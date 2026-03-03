@@ -23,3 +23,18 @@ body {
 * {
   box-sizing: border-box;
 }
+
+.adm-toast-mask .adm-toast-main.adm-toast-main-icon {
+  text-align: center;
+}
+
+.adm-toast-mask .adm-toast-main-icon .adm-toast-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.adm-toast-mask .adm-toast-main-icon .adm-toast-icon > svg {
+  display: block;
+  margin: 0 auto;
+}
