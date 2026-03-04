@@ -21,12 +21,12 @@ function TabBarLayout() {
   const activeKey = tabs.find((tab) => location.pathname.startsWith(tab.key))?.key ?? tabs[0]?.key;
 
   return (
-    <main className="mx-auto min-h-[100dvh] max-w-xl bg-slate-50">
-      <div className="min-h-[100dvh] px-4 pb-[calc(4rem+env(safe-area-inset-bottom))] pt-4">
+    <main className="app-shell">
+      <div className="page-shell">
         <Outlet />
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 mx-auto w-full max-w-xl border-t border-slate-200 bg-white pb-[env(safe-area-inset-bottom)]">
+      <div className="tabbar-shell border-t border-slate-200 bg-white">
         <TabBar activeKey={activeKey} onChange={(key) => navigate(key)}>
           {tabs.map((item) => (
             <TabBar.Item key={item.key} icon={item.icon} title={item.title} />

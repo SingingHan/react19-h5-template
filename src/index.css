@@ -1,10 +1,23 @@
-@import "tailwindcss";
+@import url("tailwindcss");
 
 :root {
   font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
   color: #0f172a;
   background-color: #f8fafc;
+
+  --safe-area-top: env(safe-area-inset-top, 0px);
   --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-left: env(safe-area-inset-left, 0px);
+  --safe-area-right: env(safe-area-inset-right, 0px);
+  --app-max-width: 36rem;
+  --app-page-x: clamp(12px, 4vw, 16px);
+  --app-page-y: clamp(12px, 3vw, 16px);
+  --tabbar-height: 50px;
+  --app-content-min-height: calc(100dvh - var(--tabbar-height) - var(--safe-area-bottom));
+}
+
+html {
+  text-size-adjust: 100%;
 }
 
 html,
@@ -16,12 +29,68 @@ body,
 }
 
 body {
+  min-width: 320px;
   min-height: 100dvh;
+  overflow-x: hidden;
   overscroll-behavior-y: none;
 }
 
 * {
   box-sizing: border-box;
+}
+
+:where(button, [role='button'], a, input, textarea, select) {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:where(button, [role='button']) {
+  min-height: 44px;
+}
+
+.app-shell {
+  width: min(100%, var(--app-max-width));
+  min-height: 100dvh;
+  margin-inline: auto;
+  background-color: #f8fafc;
+}
+
+.page-shell {
+  min-height: var(--app-content-min-height);
+  padding-block: var(--app-page-y);
+  padding-inline: max(var(--app-page-x), var(--safe-area-left))
+    max(var(--app-page-x), var(--safe-area-right));
+  padding-bottom: calc(var(--tabbar-height) + var(--safe-area-bottom) + var(--app-page-y));
+}
+
+.page-shell-standalone {
+  min-height: 100dvh;
+  padding-block: var(--app-page-y);
+  padding-inline: max(var(--app-page-x), var(--safe-area-left))
+    max(var(--app-page-x), var(--safe-area-right));
+}
+
+.tabbar-shell {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  width: min(100%, var(--app-max-width));
+  margin-inline: auto;
+  padding-bottom: var(--safe-area-bottom);
+}
+
+@supports not (height: 100dvh) {
+  body,
+  #root,
+  .app-shell {
+    min-height: 100vh;
+  }
+}
+
+@media (orientation: landscape) and (height <= 480px) {
+  :root {
+    --app-page-y: 12px;
+    --tabbar-height: 48px;
+  }
 }
 
 .adm-toast-mask .adm-toast-main.adm-toast-main-icon {

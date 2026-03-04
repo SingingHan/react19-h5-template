@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosHeaders } from 'axios';
+import axios, { AxiosHeaders, type AxiosError } from 'axios';
 import type { ApiRequestConfig } from './types';
 import { integrationConfig } from '@/config/integration';
 import { getAccessToken, getRefreshToken, useUserStore } from '@/stores/user';
@@ -234,6 +234,7 @@ httpClient.interceptors.request.use((rawConfig) => {
   return rawConfig;
 });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- axios interceptor returns unwrapped payload
 const onResponseFulfilled: any = (response: any) => {
   clearPendingRequest(response.config as ApiRequestConfig);
   return unwrapPayload(response.data as ApiEnvelope<unknown> | unknown);

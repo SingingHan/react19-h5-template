@@ -115,9 +115,12 @@ src
 
 ## H5 适配
 
-- 使用 `100dvh`
-- 支持 `safe-area-inset-bottom`
-- TabBar 底部安全区处理
+- `index.html` 使用 `viewport-fit=cover`，适配刘海屏/全面屏。
+- 全局启用 `100dvh`（含 `100vh` fallback），避免移动端地址栏收起/展开导致抖动。
+- 使用 `env(safe-area-inset-*)` 统一处理顶部/底部/左右安全区。
+- 提供统一容器与页面布局类：`app-shell`、`page-shell`、`page-shell-standalone`、`tabbar-shell`。
+- TabBar 场景统一预留：`tabbar-height + safe-area-bottom`，避免底部内容被遮挡。
+- 设置 `text-size-adjust: 100%` 与点击最小高度基线（44px），保证可读性与可点击性。
 
 ## 规范与测试
 

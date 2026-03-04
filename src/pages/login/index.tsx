@@ -42,7 +42,7 @@ function LoginPage() {
   };
 
   return (
-    <main className="mx-auto min-h-[100dvh] max-w-xl bg-slate-50 p-4">
+    <main className="app-shell page-shell-standalone">
       <Card title="Login">
         <Space direction="vertical" block>
           <Input
